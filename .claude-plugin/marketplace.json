@@ -1,0 +1,14 @@
+{
+  "name": "obsidian-claude",
+  "owner": {
+    "name": "JeanDiable"
+  },
+  "plugins": [
+    {
+      "name": "obsidian-claude",
+      "source": "./",
+      "description": "Personal knowledge management plugin for Obsidian vaults",
+      "version": "0.2.0"
+    }
+  ]
+}
