@@ -1,12 +1,13 @@
 # Obsidian Claude
 
-A [Claude Code](https://claude.ai/code) plugin for personal knowledge management in [Obsidian](https://obsidian.md/) vaults. Provides 15 skills for organizing notes using the PARA method, building an interconnected wiki, conducting research, generating content, and daily planning.
+A [Claude Code](https://claude.ai/code) plugin for personal knowledge management in [Obsidian](https://obsidian.md/) vaults. Provides 19 skills for organizing notes using the PARA method, building an interconnected wiki, reading and discovering academic papers, conducting research, generating content, and daily planning.
 
 ## Prerequisites
 
 - [Claude Code](https://claude.ai/code) CLI installed and authenticated
 - [Obsidian](https://obsidian.md/) with a vault organized using the [PARA method](https://fortelabs.com/blog/para/)
 - [Obsidian CLI](https://github.com/Yakitrak/obsidian-cli) installed and configured for your vault
+- Python 3.x with dependencies in `requirements.txt` (for paper reading skills)
 
 ## Installation
 
@@ -73,6 +74,15 @@ claude plugin uninstall obsidian-claude
 | **xiaohongshu** | `/xiaohongshu` | Xiaohongshu (Little Red Book) content generation — analyze style, write posts |
 | **create-base** | `/create-base` | Create Obsidian Bases database views with filters and formulas |
 
+### Paper Reading
+
+| Skill | Command | Description |
+|-------|---------|-------------|
+| **paper-recommend** | `/paper-recommend` | Daily arXiv paper recommendations — search, score (4D), filter, and generate reading lists |
+| **paper-analyze** | `/paper-analyze` | Deep single-paper analysis — extract key contributions, methods, results, and create structured notes |
+| **paper-images** | `/paper-images` | Extract figures from arXiv papers — tries source package first, then PDF extraction |
+| **paper-search** | `/paper-search` | Search paper notes in vault by title, author, keyword, domain, or tags |
+
 ### AI Trends
 
 | Skill | Command | Description |
@@ -99,6 +109,10 @@ My_note/
 ```
 
 Customize the folder paths in `CLAUDE.md` to match your vault.
+
+## Acknowledgments
+
+The paper reading skills (paper-recommend, paper-analyze, paper-images, paper-search) are ported from [evil-read-arxiv](https://github.com/juliye2025/evil-read-arxiv) by [OrbitOS](https://github.com/juliye2025). Thanks for the excellent arXiv paper reading workflow that inspired this integration.
 
 ## License
 
