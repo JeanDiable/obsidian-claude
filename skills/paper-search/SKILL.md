@@ -86,22 +86,22 @@ grep -r "keyword" "$OBSIDIAN_VAULT_PATH/50_Clippings/Papers/[domain]/"
 Grouped by research domain, each paper shows:
 
 ```markdown
-## Paper Search Results
+## 论文搜索结果
 
-**Search keywords**: [query terms]
+**搜索关键词**：[query terms]
 
-### LLM (N papers)
+### LLM (N篇)
 
 #### 1. [[Paper Title]] - [[link]]
-- **Relevance**: [X.X/10]
-- **Authors**: [Author1, Author2]
-- **Published**: YYYY-MM-DD
-- **Domain**: specific sub-domain
-- **Match location**: title
+- **相关度**：[X.X/10]
+- **作者**：[Author1, Author2]
+- **发表时间**：YYYY-MM-DD
+- **领域**：specific sub-domain
+- **匹配位置**：title
 
-### Multimodal (N papers)
+### Multimodal (N篇)
 
-[Similar format]
+[类似格式]
 ```
 
 ### No Results Found

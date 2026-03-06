@@ -79,33 +79,33 @@ Return image path list relative to the note file, formatted for easy note refere
 ## Image Index File (index.md)
 
 ```markdown
-# Image Index
+# 图片索引
 
-Total: X images
+总计：X 张图片
 
-## Source: arxiv-source
-- Filename: final_results_combined.pdf
-- Path: images/final_results_combined_page1.png
-- Size: 1500.5 KB
-- Format: png
+## 来源：arxiv-source
+- 文件名：final_results_combined.pdf
+- 路径：images/final_results_combined_page1.png
+- 大小：1500.5 KB
+- 格式：png
 
-## Source: pdf-figure
-- Filename: dr_pipelinev2_page1.png
-- Path: images/dr_pipelinev2_page1.png
-- Size: 45.2 KB
-- Format: png
+## 来源：pdf-figure
+- 文件名：dr_pipelinev2_page1.png
+- 路径：images/dr_pipelinev2_page1.png
+- 大小：45.2 KB
+- 格式：png
 
-## Source: pdf-extraction
-- Filename: page1_fig15.png
-- Path: images/page1_fig15.png
-- Size: 65.3 KB
-- Format: png
+## 来源：pdf-extraction
+- 文件名：page1_fig15.png
+- 路径：images/page1_fig15.png
+- 大小：65.3 KB
+- 格式：png
 ```
 
 ## Returned Image Paths
 
 ```
-Image paths:
+图片路径：
 images/final_results_combined_page1.png (arxiv-source)
 images/dr_pipelinev2_page1.png (pdf-figure)
 images/rl_framework_page1.png (pdf-figure)

@@ -212,323 +212,323 @@ status: analyzed
 
 # [Paper Title]
 
-## Core Info
-- **Paper ID**: arXiv:XXXX.XXXXX
-- **Authors**: [Author1, Author2, Author3]
-- **Institution**: [inferred from authors or paper]
-- **Publication Date**: YYYY-MM-DD
-- **Conference/Journal**: [inferred from categories]
-- **Links**: [arXiv](link) | [PDF](link)
-- **Citations**: [if available]
+## 基本信息
+- **论文ID**: arXiv:XXXX.XXXXX
+- **作者**: [Author1, Author2, Author3]
+- **机构**: [inferred from authors or paper]
+- **发表日期**: YYYY-MM-DD
+- **会议/期刊**: [inferred from categories]
+- **链接**: [arXiv](link) | [PDF](link)
+- **引用数**: [if available]
 
-## Abstract Translation
+## 摘要
 
-### English Abstract
+### 英文摘要
 [Original English abstract]
 
-### Chinese Translation
+### 中文翻译
 [Fluent Chinese translation preserving academic terminology]
 
-### Key Points
-- **Research Background**: [current state and problems in the field]
-- **Research Motivation**: [why this research is needed]
-- **Core Method**: [one-sentence summary of main method]
-- **Main Results**: [most important experimental results]
-- **Research Significance**: [contribution to the field]
+### 要点提炼
+- **研究背景**: [该领域的发展现状与存在问题]
+- **研究动机**: [为何需要此研究]
+- **核心方法**: [一句话概括核心方法]
+- **主要结果**: [最重要的实验结果]
+- **研究意义**: [对该领域的贡献]
 
-## Research Background and Motivation
+## 研究背景与动机
 
-### Field Status
-[Detailed description of current development in the field]
+### 领域现状
+[详细描述该领域的发展现状]
 
-### Limitations of Existing Methods
-[Deep analysis of problems with existing methods]
+### 现有方法的局限性
+[深入分析现有方法存在的问题]
 
-### Research Motivation
-[Explain why this research is needed]
+### 研究动机
+[阐述为何需要此研究]
 
-## Research Question
+## 研究问题
 
-### Core Research Question
-[Clear, accurate description of the core problem]
+### 核心研究问题
+[清晰、准确地描述核心问题]
 
-## Method Overview
+## 方法概述
 
-### Core Idea
-[Explain core idea in accessible language]
+### 核心思想
+[用通俗易懂的语言解释核心思想]
 
-### Method Framework
+### 方法框架
 
-#### Overall Architecture
-[Describe overall architecture including main components and relationships]
+#### 整体架构
+[描述整体架构，包括主要组件及其关系]
 
-**Architecture diagram selection principle**:
-1. **Prefer existing paper figures** - if paper PDF has architecture/flow/method diagrams, insert directly
-2. **Only create Canvas when no figure exists** - when paper lacks suitable diagrams, use JSON Canvas
+**架构图选择原则**：
+1. **优先使用论文原图** - 如论文PDF中有架构/流程/方法图表，直接插入
+2. **仅在无原图时创建 Canvas** - 论文缺乏合适的图表时，使用 JSON Canvas
 
-**Option 1: Insert paper figure (preferred)**
+**方案一：插入论文原图（推荐）**
 ```
 ![Architecture|800](images/pageX_figY.pdf)
 
-> Figure 1: [Architecture description with component meanings and relationships]
+> 图1：[架构描述，包含各组件含义及其关系]
 ```
-**Note**: Image filename must match actual filename (arXiv-extracted images are usually `.pdf` format)
+**注意**：图片文件名须与实际文件名一致（arXiv提取的图片通常为 `.pdf` 格式）
 
-**Option 2: Create Canvas architecture diagram (when paper has no figure)**
-Call `json-canvas` skill to create `.canvas` file, then embed:
+**方案二：创建 Canvas 架构图（论文无原图时）**
+调用 `json-canvas` 技能创建 `.canvas` 文件，然后嵌入：
 ```
 ![[Paper_Title_Architecture.canvas|1200|400]]
 ```
 
-#### Detailed Module Descriptions
+#### 模块详述
 
-**Module 1: [Module Name]**
-- **Function**: [main function]
-- **Input**: [input data/info]
-- **Output**: [output data/info]
-- **Processing Flow**:
-  1. [Step 1 description]
-  2. [Step 2 description]
-  3. [Step 3 description]
-- **Key Technology**: [key technology or algorithm]
-- **Math Formula**: [if important formulas exist]
+**模块一：[模块名称]**
+- **功能**: [主要功能]
+- **输入**: [输入数据/信息]
+- **输出**: [输出数据/信息]
+- **处理流程**:
+  1. [步骤1描述]
+  2. [步骤2描述]
+  3. [步骤3描述]
+- **关键技术**: [关键技术或算法]
+- **数学公式**: [如有重要公式]
 
-**Module 2: [Module Name]**
-[Similar format]
+**模块二：[模块名称]**
+[类似格式]
 
-## Experimental Results
+## 实验结果
 
-### Experimental Objectives
-[What this experiment validates]
+### 实验目标
+[本实验验证的内容]
 
-### Datasets
+### 数据集
 
-#### Dataset Statistics
+#### 数据集统计
 
-| Dataset | Samples | Feature Dim | Classes | Data Type |
+| 数据集 | 样本数 | 特征维度 | 类别数 | 数据类型 |
 |---------|---------|-------------|---------|-----------|
 | Dataset1 | Xk | Y dim | Z classes | [type] |
 
-### Experimental Setup
+### 实验设置
 
-#### Baseline Methods
-[List all compared baselines with brief descriptions]
+#### 基线方法
+[列出所有对比基线并简要描述]
 
-#### Evaluation Metrics
-[List all metrics with explanations]
+#### 评估指标
+[列出所有评估指标并说明]
 
-#### Experimental Environment
+#### 实验环境
 
-#### Hyperparameter Settings
+#### 超参数设置
 
-### Main Results
+### 主要结果
 
-#### Main Experiment Results
+#### 主实验结果
 
-| Method | Dataset1-Metric1 | Dataset1-Metric2 | Dataset2-Metric1 | Avg Rank |
+| 方法 | 数据集1-指标1 | 数据集1-指标2 | 数据集2-指标1 | 平均排名 |
 |--------|-------------------|-------------------|-------------------|----------|
 | Baseline1 | X.X±Y.Y | X.X±Y.Y | X.X±Y.Y | N |
 | **Ours** | **X.X±Y.Y** | **X.X±Y.Y** | **X.X±Y.Y** | **N** |
 
-> Note: ± indicates std dev, **bold** indicates best result
+> 注：± 表示标准差，**加粗** 表示最优结果
 
-#### Result Analysis
-[Detailed analysis of main results]
+#### 结果分析
+[对主要结果的详细分析]
 
-### Ablation Study
+### 消融实验
 
-#### Experimental Design
-[Ablation study design rationale]
+#### 实验设计
+[消融实验设计理由]
 
-#### Results and Analysis
+#### 结果与分析
 
-### Experiment Result Figures
-[Insert paper experiment result figures]
+### 实验结果图表
+[插入论文实验结果图表]
 
 ![Experiment Results|800](images/results.pdf)
 
-> Figure 2: [figure description]
+> 图2：[图表描述]
 
-## Deep Analysis
+## 深度分析
 
-### Research Value Assessment
+### 研究价值评估
 
-#### Theoretical Contributions
-- **Contribution 1**: [detailed description]
-  - Innovation: [new theory/method/perspective]
-  - Academic value: [value to academia]
-  - Impact scope: [affected research areas]
+#### 理论贡献
+- **贡献一**: [详细描述]
+  - 创新点: [新理论/方法/视角]
+  - 学术价值: [对学术界的价值]
+  - 影响范围: [影响的研究领域]
 
-#### Practical Application Value
-- **Application 1**: [scenario description]
-  - Applicability: [how applicable]
-  - Advantages: [vs existing solutions]
-  - Potential impact: [possible impact]
+#### 实际应用价值
+- **应用一**: [场景描述]
+  - 适用性: [适用程度]
+  - 优势: [相比现有方案]
+  - 潜在影响: [可能的影响]
 
-#### Domain Impact
-- **Short-term**: [near-term impact]
-- **Mid-term**: [medium-term impact]
-- **Long-term**: [long-term impact]
+#### 领域影响
+- **短期**: [近期影响]
+- **中期**: [中期影响]
+- **长期**: [长期影响]
 
-### Method Advantages
+### 方法优势
 
-#### Advantage 1: [Name]
-- **Description**: [detailed description]
-- **Technical basis**: [underlying technology]
-- **Experimental verification**: [how verified]
-- **Comparative analysis**: [degree of advantage vs existing methods]
+#### 优势一：[名称]
+- **描述**: [详细描述]
+- **技术基础**: [技术基础]
+- **实验验证**: [实验验证]
+- **对比分析**: [对比分析]
 
-### Limitations Analysis
+### 局限性分析
 
-#### Limitation 1: [Name]
-- **Description**: [detailed description]
-- **Manifestation**: [in practice]
-- **Root cause**: [fundamental reason]
-- **Impact**: [on practical applications]
-- **Possible solutions**: [how to mitigate or solve]
+#### 局限一：[名称]
+- **描述**: [详细描述]
+- **表现**: [实践中的表现]
+- **根本原因**: [根本原因]
+- **影响**: [对实际应用的影响]
+- **可能的解决方案**: [如何缓解或解决]
 
-### Applicability Analysis
+### 适用性分析
 
-#### Suitable Scenarios
-- **Scenario 1**: [description]
-  - Why suitable: [reason]
-  - Expected effect: [expected outcome]
-  - Notes: [things to watch for]
+#### 适用场景
+- **场景一**: [描述]
+  - 适用原因: [原因]
+  - 预期效果: [预期效果]
+  - 注意事项: [需要注意的事项]
 
-#### Unsuitable Scenarios
-- **Scenario 1**: [description]
-  - Why unsuitable: [reason]
-  - Alternatives: [suggested alternatives]
+#### 不适用场景
+- **场景一**: [描述]
+  - 不适用原因: [原因]
+  - 替代方案: [建议的替代方案]
 
-## Related Paper Comparison
+## 相关论文对比
 
-### Comparison Criteria
-[Why these papers were chosen for comparison]
+### 对比选择标准
+[选择这些论文进行对比的原因]
 
 ### [[Related Paper 1]] - [Title]
 
-#### Basic Info
-- **Authors**: [authors]
-- **Published**: [date]
-- **Venue**: [venue]
-- **Core method**: [one-sentence summary]
+#### 基本信息
+- **作者**: [作者]
+- **发表时间**: [日期]
+- **发表会议/期刊**: [发表会议/期刊]
+- **核心方法**: [一句话总结]
 
-#### Method Comparison
-| Dimension | Related Paper 1 | This Paper |
+#### 方法对比
+| 维度 | 相关论文1 | 本文 |
 |-----------|----------------|------------|
-| Core idea | [desc] | [desc] |
-| Technical approach | [desc] | [desc] |
-| Key components | [desc] | [desc] |
-| Innovation level | [desc] | [desc] |
+| 核心思想 | [描述] | [描述] |
+| 技术路线 | [描述] | [描述] |
+| 关键组件 | [描述] | [描述] |
+| 创新程度 | [描述] | [描述] |
 
-#### Performance Comparison
-| Dataset | Metric | Related Paper 1 | This Paper | Improvement |
+#### 性能对比
+| 数据集 | 指标 | 相关论文1 | 本文 | 提升幅度 |
 |---------|--------|----------------|------------|-------------|
 | Dataset1 | Metric1 | X.X | Y.Y | +Z.Z% |
 
-#### Relationship Analysis
-- **Relationship type**: [improves/extends/compares/follows]
-- **This paper improves**: [improvement points]
-- **Advantages**: [this paper's advantages]
-- **Disadvantages**: [this paper's disadvantages]
-- **Complementarity**: [whether methods are complementary]
+#### 关系分析
+- **关系类型**: [改进/扩展/对比/跟进]
+- **本文改进点**: [改进之处]
+- **优势**: [本文优势]
+- **不足**: [本文不足]
+- **互补性**: [方法是否互补]
 
 ### [[Related Paper 2]] - [Title]
-[Similar format]
+[类似格式]
 
-### Comparison Summary
-[Summary of all compared papers]
+### 对比总结
+[所有对比论文的总结]
 
-## Technical Roadmap
+## 技术路线图
 
-### Research Line
-This paper belongs to [technical line], whose core features are:
-- Feature 1: [description]
-- Feature 2: [description]
+### 研究脉络
+本文属于[技术路线]研究方向，其核心特征为：
+- 特征一: [描述]
+- 特征二: [描述]
 
-### Development History
+### 发展历程
 ```
 [Milestone 1] -> [Milestone 2] -> [Milestone 3] -> [This Paper] -> [Future]
 ```
 
-### Position in Roadmap
-- **Inherits**: [what prior work it builds on]
-- **Enables**: [what foundation it provides for future work]
+### 路线图中的位置
+- **继承**: [继承了哪些前人工作]
+- **开启**: [为未来工作奠定了什么基础]
 
-## Future Work Suggestions
+## 未来工作建议
 
-### Author-suggested Future Work
-1. **Suggestion 1**: [author's suggestion]
-   - Feasibility: [is it feasible]
-   - Value: [potential value]
-   - Difficulty: [implementation difficulty]
+### 作者建议的未来工作
+1. **建议一**: [作者的建议]
+   - 可行性: [是否可行]
+   - 价值: [潜在价值]
+   - 难度: [实现难度]
 
-### Analysis-based Future Directions
-1. **Direction 1**: [description]
-   - Motivation: [why worth researching]
-   - Possible methods: [possible approaches]
-   - Expected outcomes: [possible results]
-   - Challenges: [faced challenges]
+### 分析得出的未来方向
+1. **方向一**: [描述]
+   - 动机: [为何值得研究]
+   - 可能方法: [可能的方法]
+   - 预期成果: [可能的成果]
+   - 挑战: [面临的挑战]
 
-### Improvement Suggestions
-1. **Improvement 1**: [description]
-   - Current problem: [existing issue]
-   - Improvement plan: [how to improve]
-   - Expected effect: [expected outcome]
+### 改进建议
+1. **改进一**: [描述]
+   - 当前问题: [现有问题]
+   - 改进方案: [如何改进]
+   - 预期效果: [预期效果]
 
-## My Overall Assessment
+## 总体评估
 
-### Value Score
+### 价值评分
 
-#### Overall Score
-**[X.X]/10** - [brief scoring rationale]
+#### 综合评分
+**[X.X]/10** - [简要评分理由]
 
-#### Component Scores
+#### 分项评分
 
-| Dimension | Score | Rationale |
+| 维度 | 评分 | 理由 |
 |-----------|-------|-----------|
-| Innovation | [X]/10 | [detailed reason] |
-| Technical Quality | [X]/10 | [detailed reason] |
-| Experimental Adequacy | [X]/10 | [detailed reason] |
-| Writing Quality | [X]/10 | [detailed reason] |
-| Practicality | [X]/10 | [detailed reason] |
+| 创新性 | [X]/10 | [详细理由] |
+| 技术质量 | [X]/10 | [详细理由] |
+| 实验充分性 | [X]/10 | [详细理由] |
+| 写作质量 | [X]/10 | [详细理由] |
+| 实用性 | [X]/10 | [详细理由] |
 
-### Key Focus
+### 重点关注
 
-#### Notable Technical Points
+#### 值得注意的技术要点
 
-#### Parts Requiring Deep Understanding
+#### 需要深入理解的部分
 
-## My Notes
+## 个人笔记
 
-%% User can add personal reading notes here %%
+%% 在此添加个人阅读笔记 %%
 
-## Related Papers
+## 相关论文
 
-### Directly Related
-- [[Related Paper 1]] - [relationship: improves/extends/compares]
-- [[Related Paper 2]] - [relationship]
+### 直接相关
+- [[Related Paper 1]] - [关系：改进/扩展/对比]
+- [[Related Paper 2]] - [关系]
 
-### Background Related
-- [[Background Paper 1]] - [relationship]
-- [[Background Paper 2]] - [relationship]
+### 背景相关
+- [[Background Paper 1]] - [关系]
+- [[Background Paper 2]] - [关系]
 
-### Follow-up Work
-- [[Follow-up Paper 1]] - [relationship]
-- [[Follow-up Paper 2]] - [relationship]
+### 后续工作
+- [[Follow-up Paper 1]] - [关系]
+- [[Follow-up Paper 2]] - [关系]
 
-## External Resources
-[List related videos, blogs, projects, etc.]
+## 外部资源
+[列出相关视频、博客、项目等]
 
-> [!tip] Key Insight
-> [Most important insight from the paper, one-sentence core idea summary]
+> [!tip] 核心洞察
+> [论文最重要的洞察，一句话核心思想总结]
 
-> [!warning] Notes
+> [!warning] 注意事项
 > - [Note 1]
 > - [Note 2]
 
-> [!success] Recommendation
-> [Rating and brief rationale]
+> [!success] 推荐
+> [评分与简要理由]
 ```
 
 ## Important Rules

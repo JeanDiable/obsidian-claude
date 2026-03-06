@@ -195,22 +195,22 @@ Add a "Today's Overview" section before the paper list:
 
 今日推荐的{paper_count}篇论文主要聚焦于**{direction1}**、**{direction2}**和**{direction3}**等前沿方向。
 
-- **总体趋势**：{summarize overall research trends}
+- **总体趋势**：{总结整体研究趋势}
 
-- **质量分布**：今日推荐的论文评分在 {min_score}-{max_score} 之间，{overall quality assessment}。
+- **质量分布**：今日推荐的论文评分在 {min_score}-{max_score} 之间，{整体质量评价}。
 
 - **研究热点**：
-  - **{hotspot1}**：{brief description}
-  - **{hotspot2}**：{brief description}
-  - **{hotspot3}**：{brief description}
+  - **{hotspot1}**：{简要描述}
+  - **{hotspot2}**：{简要描述}
+  - **{hotspot3}**：{简要描述}
 
-- **阅读建议**：{reading order suggestions}
+- **阅读建议**：{阅读顺序建议}
 ```
 
 **Notes**:
-- Summarize based on top 10 papers' titles, abstracts, and scores
-- Extract common research themes and trends
-- Provide reasonable reading order suggestions
+- 根据Top 10论文的标题、摘要和评分进行总结
+- 提取共性研究主题和趋势
+- 提供合理的阅读顺序建议
 
 #### 4.2.2 Unified Format for All Papers
 
@@ -224,14 +224,14 @@ All papers sorted by score from high to low, using unified format:
 - **来源**：[arXiv]
 - **笔记**：[[existing note path]] or <<none>>
 
-**一句话总结**：[one-sentence summary of core contribution]
+**一句话总结**：[对核心贡献的一句话概括]
 
 **核心贡献/观点**：
 - [contribution 1]
 - [contribution 2]
 - [contribution 3]
 
-**关键结果**：[most important results from abstract]
+**关键结果**：[摘要中最重要的结果]
 
 ---
 ```
@@ -281,7 +281,7 @@ If no note:
 - **详细报告**：[[existing note path]]
 - **笔记**：已有详细分析
 
-**一句话总结**：[one-sentence summary]
+**一句话总结**：[一句话概括]
 
 ![existing image|600](existing image path)
 
@@ -298,7 +298,7 @@ If no note:
 - **来源**：[arXiv]
 - **详细报告**：[[detailed report path]] (auto-generated)
 
-**一句话总结**：[one-sentence summary]
+**一句话总结**：[一句话概括]
 
 ![extracted image|600](image path)
 
