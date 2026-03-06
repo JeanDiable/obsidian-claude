@@ -1,7 +1,7 @@
 {
   "name": "obsidian-claude",
-  "version": "0.3.0",
-  "description": "Personal knowledge management plugin for Obsidian vaults. 15 skills for PARA organization, wiki building, research, content generation, and daily planning.",
+  "version": "0.4.0",
+  "description": "Personal knowledge management plugin for Obsidian vaults. 19 skills for PARA organization, wiki building, paper reading, research, content generation, and daily planning.",
   "skills": [
     "skills/organize-para",
     "skills/organize-clippings",
@@ -17,6 +17,10 @@
     "skills/ai-newsletter",
     "skills/ai-product",
     "skills/news-research",
-    "skills/daily-plan"
+    "skills/daily-plan",
+    "skills/paper-recommend",
+    "skills/paper-analyze",
+    "skills/paper-images",
+    "skills/paper-search"
   ]
 }

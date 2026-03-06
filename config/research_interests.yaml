@@ -1,0 +1,23 @@
+vault_path: "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/My_note"
+papers_dir: "50_Clippings/Papers"
+daily_dir: "50_Clippings/Papers/Daily"
+
+research_domains:
+  Agent:
+    keywords: [agent, multi-agent, agentic, tool-use, function-calling, reasoning, planning]
+    arxiv_categories: [cs.AI, cs.CL, cs.MA]
+    priority: 9
+  LLM:
+    keywords: [large language model, LLM, transformer, pretraining, fine-tuning, RLHF, alignment, instruction-tuning]
+    arxiv_categories: [cs.CL, cs.LG, cs.AI]
+    priority: 9
+  AI_Infra:
+    keywords: [vLLM, inference, serving, KV cache, speculative decoding, quantization, parallelism, GPU, optimization]
+    arxiv_categories: [cs.DC, cs.LG, cs.PF, cs.AR]
+    priority: 8
+  Federated_Learning:
+    keywords: [federated learning, FL, personalized federated, heterogeneity, communication efficiency, privacy]
+    arxiv_categories: [cs.LG, cs.DC, cs.CR]
+    priority: 7
+
+excluded_keywords: [review, survey, workshop, 3D, robotics, autonomous driving]
