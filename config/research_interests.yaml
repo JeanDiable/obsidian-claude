@@ -18,6 +18,6 @@ research_domains:
   Federated_Learning:
     keywords: [federated learning, FL, personalized federated, heterogeneity, communication efficiency, privacy]
     arxiv_categories: [cs.LG, cs.DC, cs.CR]
-    priority: 7
+    priority: 5
 
 excluded_keywords: [review, survey, workshop, 3D, robotics, autonomous driving]
