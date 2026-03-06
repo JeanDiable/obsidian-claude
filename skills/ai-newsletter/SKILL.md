@@ -1,93 +1,122 @@
 ---
 name: ai-newsletter
-description: Curate and summarize AI newsletter content. Based on OrbitOS /ai-newsletters skill.
+description: Curate AI newsletter content with smart deduplication and ranking. Use when user invokes /ai-newsletter.
 ---
 
-# AI Newsletter
+# AI Newsletter Curation
 
-Fetch, deduplicate, rank, and summarize AI newsletter content into a digest clipping.
+Fetch, deduplicate, and rank AI newsletter content into a daily digest.
 
 ## Vault Path
 ~/Library/Mobile Documents/iCloud~md~obsidian/Documents/My_note
 
-## Data Sources
+## RSS Sources
 
-Use DuckDuckGo MCP to search for recent AI news and newsletters:
-- Search: "AI newsletter this week" / "AI news digest today"
-- Search: "LLM updates this week" / "machine learning news"
-- Search: "AI tools new releases" / "AI research breakthroughs"
-- Target sources: TLDR AI, The Rundown AI, Ben's Bites, Import AI, The Batch
-
-Also try fetching RSS feeds directly if available:
-- TLDR AI: `https://bullrich.dev/tldr-rss/ai.rss`
-- The Rundown AI: `https://rss.beehiiv.com/feeds/2R3C6Bt5wj.xml`
+- **TLDR AI**: `https://bullrich.dev/tldr-rss/ai.rss`
+- **The Rundown AI**: `https://rss.beehiiv.com/feeds/2R3C6Bt5wj.xml`
 
 ## Workflow
 
-### Step 1: Fetch Content
+1. **Check cache**: Look for `50_Clippings/AI/Newsletters/YYYY-MM/YYYY-MM-DD-摘要.md`. If exists with today's date, return cached content.
 
-1. Search for AI newsletters and digests from the past 1-3 days
-2. Fetch content from found URLs using DuckDuckGo MCP's fetch_content
-3. Try RSS feeds as backup sources
+2. **Fetch feeds**: Use WebFetch on both RSS URLs. Extract title, link, pubDate, description for each item. If RSS fails, fall back to DuckDuckGo MCP search for "AI newsletter this week", "LLM updates this week", targeting TLDR AI, The Rundown AI, Ben's Bites, Import AI, The Batch.
 
-### Step 2: Process & Deduplicate
+3. **Deduplicate**: Merge items with similar titles (80%+ word overlap). Keep longer description, track both sources.
 
-1. Extract individual news items from fetched content
-2. Deduplicate: merge items with 80%+ word overlap in titles/descriptions
-3. Rank by:
-   - AI relevance (keywords: LLM, GPT, Claude, agents, ML, transformer, diffusion)
-   - Recency (prefer today > yesterday > older)
-   - Novelty (not covered in previous digests)
+4. **Rank items** by:
+   - AI relevance (LLM, GPT, Claude, agents, ML, transformer, diffusion keywords)
+   - Productivity relevance (workflow, automation, tools, PKM)
+   - Recency (newer = higher)
+   - Novelty (check recent archives, penalize repeats)
    - Practical impact (tools, products > pure research > opinion)
 
-### Step 3: Generate Digest
+5. **Generate digest**: Use the template below. Include:
+   - 精选推荐 (3-5 highest scoring) with content creation angles
+   - AI动态 section
+   - 生产力工具 section
+   - Stats footer
 
-Create `50_Clippings/AI_Newsletter_YYYY-MM-DD.md`:
+6. **Save files** using Obsidian CLI (`obsidian create`):
+   - `50_Clippings/AI/Newsletters/YYYY-MM/YYYY-MM-DD-摘要.md` (curated digest)
+   - `50_Clippings/AI/Newsletters/YYYY-MM/原始数据/YYYY-MM-DD_TLDR-AI-Raw.md` (raw feed)
+   - `50_Clippings/AI/Newsletters/YYYY-MM/原始数据/YYYY-MM-DD_Rundown-AI-Raw.md` (raw feed)
+
+## Digest Template
 
 ```markdown
 ---
-title: "AI Newsletter Digest YYYY-MM-DD"
+title: "AI Newsletter 摘要 YYYY-MM-DD"
 created: YYYY-MM-DD
 modified: YYYY-MM-DD
 tags: [ai, newsletter, digest]
-description: "Curated AI news digest"
-source: "Multiple AI newsletters"
+description: "AI newsletter curated digest"
+source: "TLDR AI, The Rundown AI"
+type: newsletter-digest
+item_count: N
+duplicates_merged: N
+top_topics: [话题1, 话题2, 话题3]
+raw_sources:
+  - "[[YYYY-MM-DD_TLDR-AI-Raw]]"
+  - "[[YYYY-MM-DD_Rundown-AI-Raw]]"
 ---
 
-# AI Newsletter Digest — YYYY-MM-DD
+## Related
+- [[AI]]
 
-## Top Picks
-- **[Title]** ([Source](URL))
-  Summary. Why it matters.
+# AI Newsletter 摘要: YYYY-MM-DD
 
-## AI Models & Research
-- **Item** — Brief summary
+> 来源: TLDR AI, The Rundown AI
+> 原始 Newsletter: [[YYYY-MM-DD_TLDR-AI-Raw]] | [[YYYY-MM-DD_Rundown-AI-Raw]]
 
-## Tools & Products
-- **Item** — Brief summary
+## 精选推荐 (内容创作机会)
 
-## Industry & Business
-- **Item** — Brief summary
+- [ ] **[标题]** ([来源])
+  链接: [URL]
+  亮点: [相关性说明]
+  角度: [教程 | 工具评测 | 趋势分析 | 对比]
 
-## Other Notable
-- **Item** — Brief summary
+## AI动态
+
+- **[标题]** ([来源])
+  [简要总结]
+  链接: [URL]
+
+## 生产力工具
+
+- **[标题]** ([来源])
+  [简要总结]
+  链接: [URL]
+
+## 其他值得关注
+
+- **[标题]** ([来源]) - 链接: [URL]
 
 ---
-*Stats: X items fetched, Y duplicates merged, Z curated items*
-*Sources: [list of sources]*
+
+**统计:**
+- 获取条目总数: X
+- 合并重复数: Y
+- 最终精选数: Z
 ```
 
-### Step 4: Save
+## Content Angle Suggestions
 
-Save to `50_Clippings/` root (uncategorized — user sorts manually later).
+When adding angles to 精选推荐:
+- High AI relevance → "教程机会", "趋势分析"
+- High productivity relevance → "工作流展示", "工具评测"
+- Novel + trending → "抢先报道", "思想引领"
 
 ## Error Handling
-- If DuckDuckGo search fails: note the error, try alternative search terms
-- If no fresh content found: note "No new content found for today"
-- If RSS feeds fail: rely on web search only
+
+- One feed down: Continue with other, note in digest
+- Both RSS down: Fall back to DuckDuckGo MCP search
+- All sources fail: Create minimal digest noting "今日无新内容"
+- Empty feeds: Create minimal digest with explanation
 
 ## Important Rules
-- Do NOT categorize the output into Clippings subfolders — leave at root for manual sorting
+
 - Keep summaries concise — 1-2 sentences per item
 - Always include source URLs
 - Deduplicate aggressively — same story from different sources should merge
+- Save raw data alongside curated digest for reference
+- Use Obsidian CLI for all file operations
