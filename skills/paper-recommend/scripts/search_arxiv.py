@@ -749,6 +749,60 @@ def filter_and_score_papers(
     return scored_papers
 
 
+def load_previously_recommended_ids(recommendations_dir: str, lookback_days: int = 30) -> Set[str]:
+    """
+    Scan previous daily recommendation files to collect already-recommended arXiv IDs.
+
+    Looks for files matching pattern YYYY-MM-DD论文推荐.md in the given directory,
+    extracts arXiv IDs from links like [arXiv](http://arxiv.org/abs/XXXX.XXXXXvN).
+
+    Args:
+        recommendations_dir: Path to the directory containing daily recommendation files
+        lookback_days: How many days back to scan (default 30)
+
+    Returns:
+        Set of arXiv ID strings (e.g. {"2603.05500", "2603.05299"})
+    """
+    seen_ids = set()
+    rec_dir = Path(recommendations_dir)
+
+    if not rec_dir.exists():
+        logger.info("[Dedup] Recommendations directory not found: %s", recommendations_dir)
+        return seen_ids
+
+    # Find all recommendation files
+    for md_file in rec_dir.glob("*论文推荐.md"):
+        # Extract date from filename to check lookback window
+        date_match = re.match(r'(\d{4}-\d{2}-\d{2})', md_file.name)
+        if date_match:
+            try:
+                file_date = datetime.strptime(date_match.group(1), '%Y-%m-%d')
+                if (datetime.now() - file_date).days > lookback_days:
+                    continue
+            except ValueError:
+                pass
+
+        try:
+            with open(md_file, 'r', encoding='utf-8') as f:
+                content = f.read()
+
+            # Extract arXiv IDs from links: [arXiv](http://arxiv.org/abs/XXXX.XXXXXvN)
+            arxiv_ids = re.findall(r'arxiv\.org/abs/(\d+\.\d+)', content)
+            for aid in arxiv_ids:
+                seen_ids.add(aid)
+
+            # Also extract from PDF links: https://arxiv.org/pdf/XXXX.XXXXXvN
+            pdf_ids = re.findall(r'arxiv\.org/pdf/(\d+\.\d+)', content)
+            for aid in pdf_ids:
+                seen_ids.add(aid)
+
+        except Exception as e:
+            logger.warning("[Dedup] Error reading %s: %s", md_file, e)
+
+    logger.info("[Dedup] Found %d previously recommended paper IDs from %s", len(seen_ids), recommendations_dir)
+    return seen_ids
+
+
 def main():
     """主函数"""
     import argparse
@@ -774,6 +828,10 @@ def main():
                         help='Comma-separated list of arXiv categories')
     parser.add_argument('--skip-hot-papers', action='store_true',
                         help='Skip searching hot papers from Semantic Scholar')
+    parser.add_argument('--prev-recommendations-dir', type=str, default=None,
+                        help='Directory containing previous daily recommendation .md files for deduplication')
+    parser.add_argument('--dedup-lookback-days', type=int, default=30,
+                        help='How many days back to scan for deduplication (default 30)')
 
     args = parser.parse_args()
 
@@ -891,7 +949,22 @@ def main():
                 seen_ids.add(title)
                 unique_papers.append(p)
     
-    logger.info("Total unique papers after deduplication: %d", len(unique_papers))
+    logger.info("Total unique papers after intra-run deduplication: %d", len(unique_papers))
+
+    # ========== Cross-day deduplication ==========
+    if args.prev_recommendations_dir:
+        prev_ids = load_previously_recommended_ids(
+            args.prev_recommendations_dir, args.dedup_lookback_days
+        )
+        if prev_ids:
+            before_count = len(unique_papers)
+            unique_papers = [
+                p for p in unique_papers
+                if (p.get('arxiv_id') or '') not in prev_ids
+            ]
+            removed = before_count - len(unique_papers)
+            logger.info("[Dedup] Removed %d previously recommended papers, %d remaining",
+                        removed, len(unique_papers))
 
     if len(unique_papers) == 0:
         logger.warning("No papers matched the criteria!")

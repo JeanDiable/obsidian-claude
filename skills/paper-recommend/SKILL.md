@@ -58,7 +58,9 @@ python scripts/search_arxiv.py \
   --output arxiv_filtered.json \
   --max-results 200 \
   --top-n 10 \
-  --categories "cs.AI,cs.LG,cs.CL,cs.CV,cs.MM,cs.MA,cs.RO"
+  --categories "cs.AI,cs.LG,cs.CL,cs.CV,cs.MM,cs.MA,cs.RO" \
+  --prev-recommendations-dir "$OBSIDIAN_VAULT_PATH/50_Clippings/Papers/Daily" \
+  --dedup-lookback-days 30
 ```
 
 **Script functions**:
@@ -73,6 +75,7 @@ python scripts/search_arxiv.py \
 3. **Apply filtering and scoring**
    - Filter papers based on research interests config
    - Calculate comprehensive score (relevance 40%, recency 20%, popularity 30%, quality 10%)
+   - Deduplicate against previously recommended papers (scans past 30 days of daily notes)
    - Sort by score, keep top 10
 
 **Output**:
