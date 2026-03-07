@@ -749,26 +749,27 @@ def filter_and_score_papers(
     return scored_papers
 
 
-def load_previously_recommended_ids(recommendations_dir: str, lookback_days: int = 30) -> Set[str]:
+def load_previously_recommended(recommendations_dir: str, lookback_days: int = 30) -> Tuple[Set[str], Set[str]]:
     """
-    Scan previous daily recommendation files to collect already-recommended arXiv IDs.
+    Scan previous daily recommendation files to collect already-recommended papers.
 
     Looks for files matching pattern YYYY-MM-DD论文推荐.md in the given directory,
-    extracts arXiv IDs from links like [arXiv](http://arxiv.org/abs/XXXX.XXXXXvN).
+    extracts arXiv IDs from links and titles from ### [[Title]] headers.
 
     Args:
         recommendations_dir: Path to the directory containing daily recommendation files
         lookback_days: How many days back to scan (default 30)
 
     Returns:
-        Set of arXiv ID strings (e.g. {"2603.05500", "2603.05299"})
+        (arxiv_ids, titles) — sets for deduplication by ID and by title
     """
     seen_ids = set()
+    seen_titles = set()
     rec_dir = Path(recommendations_dir)
 
     if not rec_dir.exists():
         logger.info("[Dedup] Recommendations directory not found: %s", recommendations_dir)
-        return seen_ids
+        return seen_ids, seen_titles
 
     # Find all recommendation files
     for md_file in rec_dir.glob("*论文推荐.md"):
@@ -796,11 +797,17 @@ def load_previously_recommended_ids(recommendations_dir: str, lookback_days: int
             for aid in pdf_ids:
                 seen_ids.add(aid)
 
+            # Extract titles from ### [[Title]] headers (catches S2 papers without arXiv IDs)
+            titles = re.findall(r'###\s+\[\[(.+?)\]\]', content)
+            for t in titles:
+                seen_titles.add(t.strip().lower())
+
         except Exception as e:
             logger.warning("[Dedup] Error reading %s: %s", md_file, e)
 
-    logger.info("[Dedup] Found %d previously recommended paper IDs from %s", len(seen_ids), recommendations_dir)
-    return seen_ids
+    logger.info("[Dedup] Found %d arXiv IDs and %d titles from %s",
+                len(seen_ids), len(seen_titles), recommendations_dir)
+    return seen_ids, seen_titles
 
 
 def main():
@@ -953,15 +960,21 @@ def main():
 
     # ========== Cross-day deduplication ==========
     if args.prev_recommendations_dir:
-        prev_ids = load_previously_recommended_ids(
+        prev_ids, prev_titles = load_previously_recommended(
             args.prev_recommendations_dir, args.dedup_lookback_days
         )
-        if prev_ids:
+        if prev_ids or prev_titles:
             before_count = len(unique_papers)
-            unique_papers = [
-                p for p in unique_papers
-                if (p.get('arxiv_id') or '') not in prev_ids
-            ]
+            deduped = []
+            for p in unique_papers:
+                arxiv_id = p.get('arxiv_id') or ''
+                title = (p.get('title') or '').strip().lower()
+                if arxiv_id and arxiv_id in prev_ids:
+                    continue
+                if title and title in prev_titles:
+                    continue
+                deduped.append(p)
+            unique_papers = deduped
             removed = before_count - len(unique_papers)
             logger.info("[Dedup] Removed %d previously recommended papers, %d remaining",
                         removed, len(unique_papers))
